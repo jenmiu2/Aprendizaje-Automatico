@@ -16,8 +16,9 @@ def parte1():
         pred = f1.oneVsAll(x, y, i, reg, theta)
 
     for j in range(0, num_etiquetas):
-        print('Training Set Accuracy: {:f}'.format((np.mean(pred == y % 10) * 100)))
-   
+        print(pred[j])
+        print('num: {} -> Training Set Accuracy: {:f}'.format(j, (np.mean(pred[j] == y) * 100)))
+
 
 
 parte1()

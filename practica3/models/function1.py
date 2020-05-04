@@ -38,7 +38,6 @@ def grad_function_reg(theta, x, y, lam=0.1):
 
 
 def oneVsAll(x, y, num_etiquetas, reg, theta):
-    print("num etiqueta: {}".format(num_etiquetas))
     label = (y == num_etiquetas).astype(int) #label.shape = (500, )
     reg[num_etiquetas, :] = opt.fmin_tnc(func=cost_function_reg, x0=theta, fprime=grad_function_reg, args=(x, label))[1]
     return reg
