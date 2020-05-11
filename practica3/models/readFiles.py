@@ -6,9 +6,9 @@ def read_img():
     data = loadmat("data/ex3data1.mat")
     y = data['y']
     x = data['X']
-    m = x.shape[0]
-    x = np.hstack([np.ones([m, 1]), x])
-    return x, y
+    X = np.ones(shape=(x.shape[0], x.shape[1] + 1))
+    X[:, 1:] = x
+    return X, y
 
 
 def read_weight():
