@@ -12,6 +12,6 @@ def read_img():
 
 
 def read_weight():
-    data = loadmat("data/ex3data2.mat")
+    data = loadmat("data/ex3weights.mat")
     theta1, theta2 = data['Theta1'], data['Theta2']
     return theta1, theta2
