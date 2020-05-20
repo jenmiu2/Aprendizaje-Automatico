@@ -1,0 +1,13 @@
+import numpy as np
+# debe funcionar para cualquier numero de entramientos y de etiquetas
+
+def backprop(params_rn, num_entradas, num_ocultas, num_etiquetas, x, y, reg):
+    theta1 = np.reshape(params_rn[:num_ocultas * (num_entradas + 1)],
+                        (num_ocultas, (num_entradas + 1)))
+    theta2 = np.reshape(params_rn[:num_ocultas * (num_entradas + 1)],
+                        (num_ocultas, (num_entradas + 1)))
+    return 0
+
+# K = 10
+def cost():
+    return 0
