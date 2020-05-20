@@ -21,14 +21,14 @@ def cost_function(theta, x, y, lam=3):
 def grad_function(theta, x, y, lam=3):
     m = len(y)
     h = sig_function(np.matmul(x, theta))
-
+    y_ravel = np.ravel(y)
     # para j = 0
-    grad_0 = (1 / m) * (x.T @ (h - y))[0]
+    grad_0 = (1 / m) * (x.T @ (h - y_ravel))[0]
 
     # para j >= 1: (400, 5000) + (400, )
-    grad_1 = (1 / m) * (x.T @ (h - y))[1:] + ((lam / m) * theta[1:])
+    grad_1 = (1 / m) * (x.T @ (h - y_ravel))[1:] + ((lam / m) * theta[1:])
 
-    reg_grad = np.vstack((grad_0[:, np.newaxis], grad_1))
+    reg_grad = np.insert(grad_1, 0, grad_0)
     return reg_grad
 
 
@@ -39,6 +39,6 @@ def oneVsAll(x, y, num_etiquetas, reg, theta):
 
 
 def predOneVsAll(theta, x):
-    prediction = np.dot(x, theta.T)
+    prediction = sig_function(x @ theta.T)
     prediction = np.argmax(prediction, axis=1) + 1
     return prediction
