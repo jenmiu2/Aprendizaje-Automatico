@@ -1,13 +1,50 @@
 import numpy as np
+
+
 # debe funcionar para cualquier numero de entramientos y de etiquetas
 
-def backprop(params_rn, num_entradas, num_ocultas, num_etiquetas, x, y, reg):
+def backwardPropagation(params_rn, num_entradas, num_ocultas, num_etiquetas, x, y, reg):
     theta1 = np.reshape(params_rn[:num_ocultas * (num_entradas + 1)],
                         (num_ocultas, (num_entradas + 1)))
     theta2 = np.reshape(params_rn[:num_ocultas * (num_entradas + 1)],
                         (num_ocultas, (num_entradas + 1)))
+    m = x.shape[0]
+    a1, z2, a2, a3, h = forwardPropagation(x, theta1, theta2)
+
+    for t in range(m):
+        a1t = a1[t, :]  # (1, 401)
+        a2t = a2[t, :]  # (1, 26)
+        ht = h[t, :]  # (1, 10)
+        yt = y[t]  # (1, 10)
+        d3t = ht - yt  # (1, 10)
+        d2t = np.dot(theta2.T, d3t) * (a2t * (1 - a2t))  # (1, 26)
+        delta1 = delta1 + np.dot(d2t[1:, np.newaxis], a1t[np.newaxis, :])
+        delta2 = delta2 + np.dot(d3t[:, np.newaxis], a2t[np.newaxis, :])
+
     return 0
 
-# K = 10
-def cost():
-    return 0
+
+def forwardPropagation(x, theta1, theta2):
+    # First Input Layer: Activation a(1)
+    a1 = x
+    # Second Input Layer
+    # theta1: shape (25, 401)
+    # a1: shape (5000, 401)
+    # a2: shape (5000, 25)
+    # aux2: shape (5000, 26)
+    z2 = a1 @ theta1.T
+    a2 = sig_function(z2)
+    aux2 = np.ones(shape=(a2.shape[0], a2.shape[1] + 1))
+    aux2[:, 1:] = a2
+    # Third Input Layer
+    # theta2: shape (10, 26)
+    # a3: shape (5000, 26)
+    a3 = aux2 @ theta2.T
+    h = sig_function(a3)
+
+    return a1, z2, aux2, a3, h
+
+
+def sig_function(x):
+    s = 1 / (1 + np.exp(-x))
+    return s
