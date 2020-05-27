@@ -7,9 +7,7 @@ def read_img():
     data = loadmat("data/ex4data1.mat")
     y = data['y']
     x = data['X']
-    X = np.ones(shape=(x.shape[0], x.shape[1] + 1))
-    X[:, 1:] = x
-    return X, y
+    return x, y
 
 # Theta1 es de dimensión 25 x 401
 # Theta2 es de dimensión 10 x 26
