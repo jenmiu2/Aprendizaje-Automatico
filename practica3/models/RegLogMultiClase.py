@@ -7,20 +7,20 @@ def sig_function(x):
     return s
 
 
-def cost_function(theta, x, y, lam=3):
-    h = sig_function(np.matmul(x, theta))
+def cost_function(theta, x, y, lam=1):
+    h = sig_function(x @ theta)
 
     h[h == 1] = 0.999
     error = -y * np.log(h) - ((1 - y) * np.log(1 - h))
     cost = (1 / len(y)) * sum(error)
-    reg_cost = lam / (2 * len(y)) * sum(theta[1:] ** 2)
-    reg_cost = sum(cost, reg_cost)
-    return reg_cost
+    reg_cost = cost + lam / (2 * len(y)) * sum(theta[1:] ** 2)
+
+    return reg_cost[0]
 
 
 def grad_function(theta, x, y, lam=3):
     m = len(y)
-    h = sig_function(np.matmul(x, theta))
+    h = sig_function(x @ theta)
     y_ravel = np.ravel(y)
     # para j = 0
     grad_0 = (1 / m) * (x.T @ (h - y_ravel))[0]

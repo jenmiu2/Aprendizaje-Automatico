@@ -8,8 +8,8 @@ def gradient(params_ns, inputSize, hiddenSize, numLabel, x, y, lam=1):
     theta1 = params_ns[:((inputSize + 1) * hiddenSize)].reshape(hiddenSize, inputSize + 1)
     theta2 = params_ns[((inputSize + 1) * hiddenSize):].reshape(numLabel, hiddenSize + 1)
 
-    delta1 = np.zeros((theta1.shape))
-    delta2 = np.zeros((theta2.shape))
+    delta1 = np.zeros(theta1.shape)
+    delta2 = np.zeros(theta2.shape)
 
     X = np.ones(shape=(x.shape[0], x.shape[1] + 1))
     X[:, 1:] = x
