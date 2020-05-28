@@ -88,4 +88,4 @@ def checkNNGradients(costNN, reg_param):
 
     # Check two gradients
     np.testing.assert_almost_equal(grad, numgrad)
-    return (grad - numgrad)
+    return grad - numgrad

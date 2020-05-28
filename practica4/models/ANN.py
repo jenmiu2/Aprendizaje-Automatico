@@ -34,9 +34,6 @@ def forwardPropagation(x, theta):
     return 0
 
 
-
-
-
 def sig_function(x):
     s = 1 / (1 + np.exp(-x))
     return s
