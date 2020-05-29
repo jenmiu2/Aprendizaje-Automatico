@@ -20,7 +20,7 @@ def practica3():
     print("Accuracy Regression Log Multiple Clase: {}%".format(sumPrediction))
 
     prediction_fp = nn.forwardPropagation(x, theta1, theta2)
-    sumPrediction = sum(prediction_fp[:,np.newaxis] == y)[0] / 5000 * 100
+    sumPrediction = sum(prediction_fp[:,np.newaxis] == y) / prediction_fp.shape[0] * 100
     print("Accuracy Forward Propagation: {}%".format(sumPrediction))
 
 

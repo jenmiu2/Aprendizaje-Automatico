@@ -13,6 +13,6 @@ def forwardPropagation(x, theta1, theta2):
     a_2 = rl.sig_function(a_1 @ theta1.T)
     aux_2 = np.ones(shape=(a_2.shape[0], a_2.shape[1] + 1))
     aux_2[:, 1:] = a_2
-    a_3 = rl.sig_function(aux_2 @ theta2.T)
+    h = rl.sig_function(aux_2 @ theta2.T)
 
-    return np.argmax(a_3, axis=1) + 1
+    return np.argmax(h, 1) + 1

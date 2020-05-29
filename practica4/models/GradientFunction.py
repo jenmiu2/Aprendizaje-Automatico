@@ -6,7 +6,7 @@ import math as mt
 
 # debe funcionar para cualquier numero de entramientos y de etiquetas
 
-def gradient(params_ns, inputSize, hiddenSize, numLabel, x, y, lam):
+def gradient(params_ns, inputSize, hiddenSize, numLabel, x, y, lam=1):
     theta1 = params_ns[:((inputSize + 1) * hiddenSize)].reshape(hiddenSize, inputSize + 1)
     theta2 = params_ns[((inputSize + 1) * hiddenSize):].reshape(numLabel, hiddenSize + 1)
 
@@ -36,10 +36,10 @@ def gradient(params_ns, inputSize, hiddenSize, numLabel, x, y, lam):
     delta2Reg = delta2 + (lam / m) * np.hstack((np.zeros((theta2.shape[0], 1)), theta2[:, 1:]))
 
     # Calculate Cost
-    jVal, jVaGrad = cf.cost_function(theta1=theta1, theta2=theta2, x=x, y=y, a=h)
+    jVal, jValGrad = cf.cost_function(theta1=theta1, theta2=theta2, x=x, y=y, a=h, numLabel=numLabel)
 
-    deltaVec = np.concatenate((delta1.ravel(), delta2.ravel()))
-    return jVal, deltaVec
+    deltaVec = np.concatenate((delta1Reg.ravel(), delta2Reg.ravel()))
+    return jValGrad, deltaVec
 
 
 def forwardPropagation(x, theta1, theta2):
@@ -85,39 +85,17 @@ def randomWeight(Lin, Lout, e=0.12):
     return matrix
 
 
-def checkNNGradient(J, Grad, theta):
-    numGrad = computeNumericalGradient(J, theta)
-    return numGrad - Grad
-
-
-def computeNumericalGradient(J, theta):
-    """
-    Computes the gradient of J around theta using finite differences and
-    yields a numerical estimate of the gradient.
-    """
-    gradApprox = np.zeros_like(theta)
-    tol = 1e-4
-
-    for i in range(len(theta)):
-        # Set perturbation vector
-        thetaMinus = (theta[i] - tol)
-        thetaPlus = (theta[i] + tol)
-        res = (J * (thetaPlus - thetaMinus)) / (2 * tol)
-        gradApprox[i] = res
-
-    return gradApprox
-
-
-def backpropagationLearning(x, y, theta1, theta2):
+def backpropagationLearning(x, y, theta1, theta2, hiddenSize=25, numLabel=10, inputSize=400):
     # Initialize params
-    inputSize = x.shape[1]
-    hiddenSize = theta1.shape[0]
-    numLabel = 10
+  #  params_ns = (np.random.random(size=hiddenSize * (inputSize + 1) +
+       #                                numLabel * (hiddenSize + 1)) - 0.5) * 0.25
     params_ns = np.concatenate((theta1.ravel(), theta2.ravel()))
+
     fmin = minimize(fun=gradient,
                     x0=params_ns,
                     args=(inputSize, hiddenSize, numLabel, x, y, 1),
                     method='TNC',
+                    jac=True,
                     options={'maxiter': 70})
 
     return fmin
