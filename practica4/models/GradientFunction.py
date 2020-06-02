@@ -87,8 +87,9 @@ def randomWeight(Lin, Lout, e=0.12):
 
 def backpropagationLearning(x, y, theta1, theta2, hiddenSize=25, numLabel=10, inputSize=400):
     # Initialize params
-  #  params_ns = (np.random.random(size=hiddenSize * (inputSize + 1) +
-       #                                numLabel * (hiddenSize + 1)) - 0.5) * 0.25
+    #params_ns = (np.random.random(size=hiddenSize * (inputSize + 1) +
+                                  # numLabel * (hiddenSize + 1)) - 0.5) * 0.25
+
     params_ns = np.concatenate((theta1.ravel(), theta2.ravel()))
 
     fmin = minimize(fun=gradient,

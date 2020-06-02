@@ -30,8 +30,6 @@ def practica4():
     print("The result of the checking in grad : {}".format(tol[0]))
     '''
 
-
-
     prediction = gf.backpropagationLearning(x, y, theta1, theta2)
     jac = prediction.x
     print("Result Prediction: {}".format(jac))
