@@ -1,12 +1,12 @@
 1. Regresion Lineal Regularizada
-    Cost: 304.0348588869309
+    Cost: 303.9931922202643
     Theta 0: -15.303015674201186
     Theta 1: 598.2507441727035
 
     Tras aplicar la función de minimización:
-    Cost: 140.95412088055392
-    Theta 0: -11.217589325366376
-    Theta 1: -245.65199649371533
+    Cost: 22.37954182294029
+    Theta 0: 13.08771438
+    Theta 1: 0.367742
 
 2. Curvas de aprendizajes
 
