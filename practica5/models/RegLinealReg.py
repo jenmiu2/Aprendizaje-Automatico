@@ -5,18 +5,18 @@ costHistory = []
 
 
 def LinearGradienteCost(theta, x, y, lam=1):
-    m = len(x)
+    M = len(x)
     h = theta @ x.T
 
     # cost
-    cost = 1 / 2 / m * np.sum((h - y)**2)
-    reg_cost = cost + lam / 2 / m * np.sum(theta[1:]**2)
+    cost = 1 / 2 / M * np.sum((h - y)**2)
+    reg_cost = cost + lam / 2 / M * np.sum(theta[1:]**2)
 
     # grad,  j = 0
-    grad = (1 / m) * ((h - y).T @ x)
+    grad = (1 / M) * ((h - y).T @ x)
 
     # grad, j >= 1
-    grad[1:] = grad[1:] + ((lam / m) * theta[1:])
+    grad[1:] = grad[1:] + ((lam / M) * theta[1:])
 
     # update cost history
 
@@ -25,18 +25,18 @@ def LinearGradienteCost(theta, x, y, lam=1):
 
 
 def error(theta, x, y):
-    m = len(x)
+    M = len(x)
     h = theta @ x.T
-    err = 1 / 2 / m * np.sum((h - y) ** 2)
+    err = 1 / 2 / M * np.sum((h - y) ** 2)
     return err
 
 
-def minGradient(theta, x, y, lam=1):
+def minGradient(theta, x, y, lam=1, maxiter=1000):
     fmin = minimize(fun=LinearGradienteCost,
                     x0=theta,
                     args=(x, y, lam),
                     method='TNC',
                     jac=True,
-                    options={'maxiter': 200})
+                    options={'maxiter': maxiter})
 
     return fmin
