@@ -11,3 +11,14 @@ def part1(x, y, theta):
     plt.ylim(-5, 40)
     plt.show()
     plt.savefig('data/fig1.png')
+
+
+def parte2(errTrain, errVal, m):
+    plt.plot(np.arange(1, m + 1), errTrain)
+    plt.plot(np.arange(1, m + 1), errVal)
+    plt.show()
+    plt.savefig('data/fig2.png', dpi=300)
+
+
+def parte3():
+    print("")

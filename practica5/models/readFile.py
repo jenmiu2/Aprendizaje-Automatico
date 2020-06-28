@@ -8,8 +8,8 @@ import numpy as np
 def image():
     data = loadmat("data/ex5data1.mat")
     X = data["X"]
-    y = data["y"]
-    yVal = data['yval']
+    y = data["y"].ravel()
+    yVal = data['yval'].ravel()
     xVal = data['Xval']
     return X, y, xVal, yVal
 
@@ -17,6 +17,6 @@ def image():
 # x es de dimension 5000 x 400
 def image_Test():
     data = loadmat("data/ex5data1.mat")
-    y = data['ytest']
+    y = data['ytest'].ravel()
     x = data['Xtest']
     return x, y
