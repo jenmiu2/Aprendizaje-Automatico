@@ -37,6 +37,9 @@ def parte3():
 
 
 def parte4():
-    spamDetector.detection()
+   xTrain = spamDetector.detection()
 
 parte4()
+from scipy.io import loadmat
+data = loadmat('data/spamTest.mat')
+print(data)
