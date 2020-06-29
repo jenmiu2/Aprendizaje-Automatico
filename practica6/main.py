@@ -2,7 +2,7 @@ from models import readFile
 from models import showData
 from models import kernelLineal
 from models import kernelGaussiano
-import numpy as np
+from models import spamDetector
 
 
 def parte1():
@@ -36,4 +36,7 @@ def parte3():
     showData.visualize_boundary(x, y, svm, 2)
 
 
-readFile.data4()
+def parte4():
+    spamDetector.detection()
+
+parte4()
