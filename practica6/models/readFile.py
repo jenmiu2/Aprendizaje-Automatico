@@ -1,5 +1,7 @@
+from models import get_vocab_dict
 from scipy.io import loadmat
 import numpy as np
+import codecs
 
 
 def data1():
@@ -23,3 +25,15 @@ def data3():
     y = data_['y'].ravel().reshape(-1)
     yVal = data_['yval'].ravel()
     return x, xVal, y, yVal
+
+def data4_1():
+    vocabulary = get_vocab_dict.getVocabDict()
+    return vocabulary
+
+def data4_2(ind):
+    emailContent = codecs.open('{0}/{1:04d}.txt'.format('data/spam/', ind),
+                               'r',
+                               encoding='utf-8',
+                               errors='ignore').read()
+
+    return emailContent

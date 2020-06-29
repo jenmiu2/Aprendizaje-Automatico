@@ -27,6 +27,7 @@ def parte2():
 def parte3():
     # read data
     x, xVal, y, yVal = readFile.data3()
+    showData.initial(x, y)
 
     #Find best parameter
     c, s = kernelGaussiano.findParam(x, y, xVal, yVal)
@@ -35,4 +36,4 @@ def parte3():
     showData.visualize_boundary(x, y, svm, 2)
 
 
-parte3()
+readFile.data4()
