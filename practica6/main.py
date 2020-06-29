@@ -26,22 +26,13 @@ def parte2():
 
 def parte3():
     # read data
-    x, y, xVal, yVal = readFile.data3()
+    x, xVal, y, yVal = readFile.data3()
 
-    # create c´s and sigma´s
-    Cs = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30]
-    sigmas = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30]
-    length = len(sigmas)
+    #Find best parameter
+    c, s = kernelGaussiano.findParam(x, y, xVal, yVal)
 
-    # create scores
-    scores = np.zeros(shape=(length, length))
-
-    for i, c in enumerate(Cs):
-        for j, sigma in enumerate(sigmas):
-            svm = kernelGaussiano.initial(x, y, c=c, sigma=sigma)
-            scores[j: i] = svm.score(x, y)
-
-    print(scores)
+    svm = kernelGaussiano.initial(x, y, c=c, sigma=s)
+    showData.visualize_boundary(x, y, svm, 2)
 
 
 parte3()

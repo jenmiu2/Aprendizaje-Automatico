@@ -20,6 +20,6 @@ def data3():
     data_ = loadmat("data/ex6data3.mat")
     x = data_['X']
     xVal = data_['Xval']
-    y = data_['y'].ravel()
+    y = data_['y'].ravel().reshape(-1)
     yVal = data_['yval'].ravel()
     return x, xVal, y, yVal
