@@ -41,7 +41,7 @@ def data4_2(ind):
 
 
 def data4_3(ind):
-    emailContent = codecs.open('{0}/{1:04d}.txt'.format('data/easy-ham/', ind),
+    emailContent = codecs.open('{0}/{1:04d}.txt'.format('data/easy_ham/', ind),
                                'r',
                                encoding='utf-8',
                                errors='ignore').read()
@@ -49,7 +49,7 @@ def data4_3(ind):
 
 
 def data4_4(ind):
-    emailContent = codecs.open('{0}/{1:04d}.txt'.format('data/hard-ham/', ind),
+    emailContent = codecs.open('{0}/{1:04d}.txt'.format('data/hard_ham/', ind),
                                'r',
                                encoding='utf-8',
                                errors='ignore').read()

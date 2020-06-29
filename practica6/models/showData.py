@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from models import readFile
 
 
 def initial(x, y):
@@ -32,3 +33,4 @@ def visualize_boundary(x, y, svm, fig):
     plt.contour(x1, x2, yp)
     plt.show()
     plt.savefig('data/fig2-{}'.format(fig))
+

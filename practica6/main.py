@@ -5,6 +5,7 @@ from models import kernelGaussiano
 from models import spamDetector
 
 
+
 def parte1():
     x, y = readFile.data1()
 
@@ -37,9 +38,15 @@ def parte3():
 
 
 def parte4():
-   xTrain = spamDetector.detection()
+    xTrain, xVal, xTest, yTrain, yVal, yTest = spamDetector.createTrainTestData()
+
+    # Find best parameter
+    c, maxScore = spamDetector.findParam(xTrain, yTrain.ravel(), xVal, yVal.ravel())
+    svm = kernelLineal.initial(xTrain, yTrain.ravel(), c=c)
+
+    print("Value of C: {}".format(c))
+    print("Training Accuracy: {}".format(svm.score(xTrain, yTrain.ravel()) * 100))
+    print("Vaidation Accuracy: {}".format(maxScore * 100))
+    print("Test Accuracy: {}".format(svm.score(xTest, yTest.ravel()) * 100))
 
 parte4()
-from scipy.io import loadmat
-data = loadmat('data/spamTest.mat')
-print(data)
