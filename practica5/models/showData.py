@@ -14,8 +14,8 @@ def part1(x, y, theta):
 
 
 def parte2(errTrain, errVal, m, fig):
-    plt.plot(np.arange(1, m + 1), errTrain)
-    plt.plot(np.arange(1, m + 1), errVal)
+    plt.plot(np.arange(1, m + 1), errTrain, label="Train")
+    plt.plot(np.arange(1, m + 1), errVal, label="Validation")
     plt.show()
     plt.savefig('data/fig2-{}.png'.format(fig), dpi=300)
 
@@ -24,7 +24,7 @@ def parte3_1(theta, p, mu, sigma, x, y):
     line2 = np.linspace(-110, 50, 100)
 
     line1 = theta[0] * np.ones(100)
-    for i in range(1, p):
+    for i in range(p + 1):
         line1 += theta[i] * (line2 ** i - mu[i - 1]) / sigma[i - 1]
 
     plt.figure()
@@ -35,7 +35,8 @@ def parte3_1(theta, p, mu, sigma, x, y):
 
 
 def parte3_2(errTrain, errVal, lam):
-    plt.plot(lam, errTrain, '-o')
-    plt.plot(lam, errVal, '-o', lw=2)
+    plt.figure()
+    plt.plot(lam, errTrain, '-o', label="Train")
+    plt.plot(lam, errVal, '-o', label="Validation")
     plt.show()
     plt.savefig('data/fig3-2.png', dpi=300)

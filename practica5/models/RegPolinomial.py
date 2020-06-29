@@ -23,6 +23,6 @@ def matrixNormalize(matrix):
 
 def toNormalize(matrix, mu, sigma, p=8):
     polyMatrix = matrixH(matrix, p=p)
-    normMatrix = (polyMatrix - mu)
-    normMatrix = normMatrix / sigma
+    muMatrix = (polyMatrix - mu)
+    normMatrix = muMatrix / sigma
     return normMatrix
